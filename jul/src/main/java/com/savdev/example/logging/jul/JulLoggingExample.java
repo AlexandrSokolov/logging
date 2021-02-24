@@ -18,6 +18,7 @@ public class JulLoggingExample {
     logger.severe("This is an error message (originally, JUL)");   // == ERROR
     logger.warning("This is a warning message (originally, JUL)"); // == WARNING
     logger.fine("Here is a debug message (originally, JUL)");      // == DEBUG
+    logger.info(logger.getClass().getName());
   }
 
   public static Logger logger() {

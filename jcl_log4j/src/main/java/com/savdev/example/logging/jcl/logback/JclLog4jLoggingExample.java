@@ -17,6 +17,7 @@ public class JclLog4jLoggingExample {
     logger.error("This is an error message (originally, jcl with log4j)");   // == ERROR
     logger.warn("This is a warning message (originally, jcl with log4j)"); // == WARNING
     logger.debug("Here is a debug message (originally, jcl with log4j)");      // == DEBUG
+    logger.info(logger.getClass().getName());
   }
 
 }

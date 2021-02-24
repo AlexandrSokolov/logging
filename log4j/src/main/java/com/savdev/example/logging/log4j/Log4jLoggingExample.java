@@ -16,6 +16,7 @@ public class Log4jLoggingExample {
     logger.error("This is an error message, (originally, log4j)");   // == ERROR
     logger.warn("This is a warning message, (originally, log4j)"); // == WARNING
     logger.debug("Here is a debug message, (originally, log4j)");      // == DEBUG
+    logger.info(logger.getClass().getName());
   }
 
 }

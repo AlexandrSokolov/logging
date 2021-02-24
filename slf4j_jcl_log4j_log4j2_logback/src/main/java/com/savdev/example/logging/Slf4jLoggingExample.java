@@ -25,6 +25,7 @@ public class Slf4jLoggingExample {
     logger.error("This is an error message, (originally, slf4j with logback)");   // == ERROR
     logger.warn("This is a warning message, (originally, slf4j with logback)"); // == WARNING
     logger.debug("Here is a debug message, (originally, slf4j with logback)");      // == DEBUG
+    logger.info(logger.getClass().getName());
   }
 
 }
