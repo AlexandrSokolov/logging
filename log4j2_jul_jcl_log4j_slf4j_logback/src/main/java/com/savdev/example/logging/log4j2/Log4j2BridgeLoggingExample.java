@@ -4,17 +4,22 @@ package com.savdev.example.logging.log4j2;
 import com.savdev.example.logging.jcl.logback.JclLog4jLoggingExample;
 import com.savdev.example.logging.jul.JulLoggingExample;
 import com.savdev.example.logging.log4j.Log4jLoggingExample;
+
 import com.savdev.example.logging.log4j.Log4jV2LoggingExample;
 import com.savdev.example.logging.logback.LogbackLoggingExample;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Log4j2LoggingExample {
+public class Log4j2BridgeLoggingExample {
 
-  private static final Logger logger = LogManager.getLogger(Log4j2LoggingExample.class);
+  static {
+    System.setProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager");
+  }
+
+  private static final Logger logger = LogManager.getLogger(Log4j2BridgeLoggingExample.class);
 
   public static void main(String ... args) {
-    new Log4j2LoggingExample().doLog();
+    new Log4j2BridgeLoggingExample().doLog();
     new JulLoggingExample().doLog();
     new Log4jLoggingExample().doLog();
     new Log4jV2LoggingExample().doLog();
