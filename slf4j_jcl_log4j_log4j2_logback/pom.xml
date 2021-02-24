@@ -35,6 +35,12 @@
         <artifactId>log4j-over-slf4j</artifactId>
       <version>1.7.30</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.7.30</version>
+    </dependency>
 
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -54,6 +60,11 @@
     <dependency>
       <groupId>com.savdev.example.logging</groupId>
       <artifactId>log4j-v2</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.savdev.example.logging</groupId>
+      <artifactId>jcl-log4j</artifactId>
       <version>1.0.0</version>
     </dependency>
   </dependencies>

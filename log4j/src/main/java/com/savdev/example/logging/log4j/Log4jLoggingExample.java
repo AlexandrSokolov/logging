@@ -12,10 +12,10 @@ public class Log4jLoggingExample {
   }
 
   public void doLog() {
-    logger.info("This is an info message");      // == INFO
-    logger.error("This is an error message");   // == ERROR
-    logger.warn("This is a warning message"); // == WARNING
-    logger.debug("Here is a debug message");      // == DEBUG
+    logger.info("This is an info message, (originally, log4j)");      // == INFO
+    logger.error("This is an error message, (originally, log4j)");   // == ERROR
+    logger.warn("This is a warning message, (originally, log4j)"); // == WARNING
+    logger.debug("Here is a debug message, (originally, log4j)");      // == DEBUG
   }
 
 }

@@ -1,4 +1,4 @@
-package com.savdev.example.logging.jcl.log4j;
+package com.savdev.example.logging.jcl.logback;
 
 
 import org.apache.commons.logging.Log;
@@ -12,11 +12,11 @@ public class JclLog4jLoggingExample {
     new JclLog4jLoggingExample().doLog();
   }
 
-  void doLog() {
-    logger.info("This is an info message");      // == INFO
-    logger.error("This is an error message");   // == ERROR
-    logger.warn("This is a warning message"); // == WARNING
-    logger.debug("Here is a debug message");      // == DEBUG
+  public void doLog() {
+    logger.info("This is an info message (originally, jcl with log4j)");      // == INFO
+    logger.error("This is an error message (originally, jcl with log4j)");   // == ERROR
+    logger.warn("This is a warning message (originally, jcl with log4j)"); // == WARNING
+    logger.debug("Here is a debug message (originally, jcl with log4j)");      // == DEBUG
   }
 
 }

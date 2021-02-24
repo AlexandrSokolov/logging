@@ -14,10 +14,10 @@ public class JulLoggingExample {
   }
 
   public void doLog() {
-    logger.info("This is an info message");      // == INFO
-    logger.severe("This is an error message");   // == ERROR
-    logger.warning("This is a warning message"); // == WARNING
-    logger.fine("Here is a debug message");      // == DEBUG
+    logger.info("This is an info message (originally, JUL)");      // == INFO
+    logger.severe("This is an error message (originally, JUL)");   // == ERROR
+    logger.warning("This is a warning message (originally, JUL)"); // == WARNING
+    logger.fine("Here is a debug message (originally, JUL)");      // == DEBUG
   }
 
   public static Logger logger() {
