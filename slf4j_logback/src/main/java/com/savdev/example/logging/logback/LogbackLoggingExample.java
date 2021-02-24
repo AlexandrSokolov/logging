@@ -12,7 +12,7 @@ public class LogbackLoggingExample {
     new LogbackLoggingExample().doLog();
   }
 
-  void doLog() {
+  public void doLog() {
     logger.info("This is an info message");      // == INFO
     logger.error("This is an error message");   // == ERROR
     logger.warn("This is a warning message"); // == WARNING

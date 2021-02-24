@@ -5,6 +5,7 @@ import com.savdev.example.logging.jcl.logback.JclLog4jLoggingExample;
 import com.savdev.example.logging.jul.JulLoggingExample;
 import com.savdev.example.logging.log4j.Log4jLoggingExample;
 import com.savdev.example.logging.log4j.Log4jV2LoggingExample;
+import com.savdev.example.logging.logback.LogbackLoggingExample;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +19,7 @@ public class Log4j2LoggingExample {
     new Log4jLoggingExample().doLog();
     new Log4jV2LoggingExample().doLog();
     new JclLog4jLoggingExample().doLog();
+    new LogbackLoggingExample().doLog();
   }
 
   void doLog() {
