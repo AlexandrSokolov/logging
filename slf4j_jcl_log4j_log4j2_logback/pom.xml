@@ -59,7 +59,7 @@
     </dependency>
     <dependency>
       <groupId>com.savdev.example.logging</groupId>
-      <artifactId>log4j-v2</artifactId>
+      <artifactId>log4j2</artifactId>
       <version>1.0.0</version>
     </dependency>
     <dependency>

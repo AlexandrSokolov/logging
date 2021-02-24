@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.savdev.example.logging</groupId>
-  <artifactId>log4j-v2</artifactId>
+  <artifactId>log4j2</artifactId>
   <packaging>jar</packaging>
   <version>1.0.0</version>
 
