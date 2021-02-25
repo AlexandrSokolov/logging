@@ -1,6 +1,13 @@
 http://logging.apache.org/log4j/2.x/faq.html#which_jars
+https://stackoverflow.com/questions/41498021/is-it-worth-to-use-slf4j-with-log4j2
 
+List of packages you need to find in dependencies, to remove them explicitly:
+if `slf4j` is used as api with `logback` implementations:
+  logback-core, logback-classic, slf4j, you need to add dependency on `log4j-slf4j-impl`
 
+commons-logging -> log4j-jcl
+log4j -> log4j-1.2-api
+jul -> log4j-jul
 
 To send logs from `slf4j` as a logging bridge with a logging framework, like `logback`:
 ```xml
