@@ -3,29 +3,37 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.savdev.example.logging</groupId>
-  <artifactId>logging-parent</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>log4j2-web</artifactId>
+  <packaging>war</packaging>
   <version>1.0.0</version>
 
   <properties>
 
+    <failOnMissingWebXml>false</failOnMissingWebXml>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
+  
   </properties>
 
-  <modules>
-    <module>jul</module>
-    <module>log4j</module>
-    <module>jcl_log4j</module>
-    <module>log4j2</module>
-    <module>slf4j_logback</module>
-    <module>slf4j_log4j</module>
-    <module>slf4j_log4j2</module>
-    <module>slf4j_jcl_log4j_log4j2_logback</module>
-    <module>log4j2_jul_jcl_log4j_slf4j_logback</module>
-    <module>log4j2_web</module>
-  </modules>
+  <dependencies>
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>7.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.14.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-to-slf4j</artifactId>
+      <version>2.14.0</version>
+    </dependency>
+  </dependencies>
+
 </project>
