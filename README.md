@@ -10,11 +10,15 @@
 
 ### Logging frameworks
 
-- [Log4j2 (recommended)](log4j2/README.md)
+- [Log4j2 with mix of other logging frameworks](log4j2_mix/README.md)
+- [Log4j2](log4j2/README.md)
 - [Slf4j with logback](slf4j_logback/README.md)
 - [Slf4j with log4j2](slf4j_log4j2/README.md)
-- [JCL with log4j (legacy)](jcl_log4j/README.md)
-- [Log4j (legacy)](log4j/README.md)
-- [JUL (legacy)](jul/README.md)
+  
+##### Legacy solutions, do not use them now:
+- [Slf4j with log4j](slf4j_log4j2/README.md)
+- [JCL with log4j](jcl_log4j/README.md)
+- [Log4j](log4j/README.md)
+- [JUL](jul/README.md)
 
 

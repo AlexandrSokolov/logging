@@ -26,3 +26,7 @@ Logback is added to the dependency:
       <version>1.2.3</version>
     </dependency>
 ```
+
+#### Logback configuration file
+
+`logback.xml` available via classpath (for instance via `resources`)
