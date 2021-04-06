@@ -1,4 +1,4 @@
-Java Util Logging (JUL)
+## Java Util Logging (JUL)
 
 **Note: Do note use this solution for logging!!!**
 
