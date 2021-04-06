@@ -23,12 +23,12 @@ Note: in dependencies in artifact id, `log4j`, but not `log4j2` is used:
 
 You want to route logging calls to the Log4j 2 implementation
 
-- [slf4j and logback](#slf4j-and-logback)
-- [jcl and log4j (v1)](#jcl-and-log4j-v1)
-- [log4j (v1)](#log4j-v1)
-- [jul](#jul)
+- [slf4j and logback](#1-slf4j-and-logback)
+- [jcl and log4j (v1)](#2-jcl-and-log4j-v1)
+- [log4j (v1)](#3-log4j-v1)
+- [jul](#4-jul)
 
-##### slf4j and logback
+##### 1. slf4j and logback
 
 Add dependency on `log4j-slf4j-impl` 
 ```xml
@@ -59,7 +59,7 @@ Exclude `logback-core`, `logback-classic`:
   </dependencies>
 ```
 
-##### jcl and log4j (v1)
+##### 2. jcl and log4j (v1)
 
 Add dependency on `log4j-jcl`:
 ```xml
@@ -88,7 +88,7 @@ Exclude `commons-logging` jcl and `log4j` - the real dependency framework, used 
     </dependency>
 ```
 
-##### log4j (v1)
+##### 3. log4j (v1)
 
 Add dependency on `log4j-1.2-api`
 ```xml
@@ -114,7 +114,7 @@ Exclude `log4j`:
     </dependency>
 ```
 
-##### jul
+##### 4. jul
 
 Add dependency on `log4j-jul`
 
