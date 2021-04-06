@@ -4,12 +4,12 @@ package com.savdev.example.logging.logback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LogbackLoggingExample {
+public class SlfLogbackLoggingExample {
 
-  private static final Logger logger = LoggerFactory.getLogger(LogbackLoggingExample.class);
+  private static final Logger logger = LoggerFactory.getLogger(SlfLogbackLoggingExample.class);
 
   public static void main(String ... args) {
-    new LogbackLoggingExample().doLog();
+    new SlfLogbackLoggingExample().doLog();
   }
 
   public void doLog() {
