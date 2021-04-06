@@ -3,10 +3,11 @@
 - Do not use logging framework directly,
   but use in your code logging bridge interfaces
   (`slf4j`, `log4j2`).
-  Do not use JCL - as a logging bridge. It is legacy.
-- For standalone applications configure add logging dependency via maven.
+  Do not use JCL - as a logging bridge. It is a legacy.
+- For standalone applications add logging dependency via maven.
 - For managed applications (for instance deployed to the Wildfly), 
   configure actual logging dependency via the server configuration.
+  Do not include maven dependencies on a real logging implementations.
 
 
 ### Logging frameworks management for java applications, deployed to WildFly
