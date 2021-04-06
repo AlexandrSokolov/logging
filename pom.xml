@@ -24,7 +24,7 @@
     <module>slf4j_logback</module>
     <module>slf4j_log4j</module>
     <module>slf4j_log4j2</module>
-    <module>slf4j_jcl_log4j_log4j2_logback</module>
+    <module>slf4j_mix</module>
     <module>log4j2_mix</module>
     <module>log4j2_web</module>
   </modules>

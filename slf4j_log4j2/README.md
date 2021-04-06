@@ -1,6 +1,8 @@
 ## SLF4J with log4j2
 
-See also [Log4j 2 SLF4J Binding](https://logging.apache.org/log4j/2.x/log4j-slf4j-impl/)
+See also:
+[Log4j 2 SLF4J Binding](https://logging.apache.org/log4j/2.x/log4j-slf4j-impl/)
+[Is it worth to use slf4j with log4j2](https://stackoverflow.com/questions/41498021/is-it-worth-to-use-slf4j-with-log4j2)
 
 In the code you reference only `slf4j` interfaces: 
 

@@ -11,6 +11,7 @@
 ### Logging frameworks
 
 - [Log4j2 with mix of other logging frameworks](log4j2_mix/README.md)
+- [Slf4j with mix of other logging frameworks](slf4j_mix/README.md)
 - [Log4j2](log4j2/README.md)
 - [Slf4j with logback](slf4j_logback/README.md)
 - [Slf4j with log4j2](slf4j_log4j2/README.md)

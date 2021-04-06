@@ -1,1 +1,0 @@
-https://stackoverflow.com/questions/41498021/is-it-worth-to-use-slf4j-with-log4j2
