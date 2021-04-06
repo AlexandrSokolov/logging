@@ -8,7 +8,13 @@
 - For managed applications (for instance deployed to the Wildfly), 
   configure actual logging dependency via the server configuration.
 
-### Logging frameworks
+
+### Logging frameworks management for java applications, deployed to WildFly
+
+- [Slf4j for WildFly (preferred)](slf4j_wildfly/README.md)
+- [Log4j2 for WildFly](log4j2_wildfly/README.md)
+
+### Logging frameworks for standalone java applications
 
 - [Log4j2 with mix of other logging frameworks](log4j2_mix/README.md)
 - [Slf4j with mix of other logging frameworks](slf4j_mix/README.md)

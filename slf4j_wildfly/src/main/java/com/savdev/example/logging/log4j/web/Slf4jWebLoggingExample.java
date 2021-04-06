@@ -1,6 +1,11 @@
 package com.savdev.example.logging.log4j.web;
 
 
+import com.savdev.example.logging.jcl.logback.JclLog4jLoggingExample;
+import com.savdev.example.logging.jul.JulLoggingExample;
+import com.savdev.example.logging.log4j.Log4jLoggingExample;
+import com.savdev.example.logging.log4j.Log4jV2LoggingExample;
+import com.savdev.example.logging.logback.SlfLogbackLoggingExample;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +22,11 @@ public class Slf4jWebLoggingExample {
   @PostConstruct
   public void init() {
     doLog();
+    new JulLoggingExample().doLog();
+    new Log4jLoggingExample().doLog();
+    new JclLog4jLoggingExample().doLog();
+    new Log4jV2LoggingExample().doLog();
+    new SlfLogbackLoggingExample().doLog();
   }
 
   public void doLog() {

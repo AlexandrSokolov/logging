@@ -1,5 +1,8 @@
 ## Slf4j used as a logging bridge and logback is used as a real logging framework
 
+TODO: it is a good practice to exclude dependency you do not use. 
+See how exclusions are defined in [log4j2_mix/README.md](../log4j2_mix/README.md)
+
 Maven dependency on `slf4j-api` and `logback-classic`:
 ```xml
   <dependencies>
