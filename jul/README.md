@@ -1,12 +1,27 @@
 Java Util Logging (JUL)
 
-Loading logging.properties.
+**Note: Do note use this solution for logging!!!**
 
-The default `${JAVA_JRE}/lib/logging.properties` file is used by JUL.
-You can use your custome file, specify the path to the file 
-via `java.util.logging.config.file` system setting.
+- [Configuration file](#configuration-file)
+- [Default config location](#default-the-config-file-location)
+- [Customizing of the config file location](#customizing-location-to-an-external-loggingproperties-file)
+- [Using the config file from the resources](#accessing-loggingproperties-from-the-resources)
 
-Load the file from resources via `LogManager`
+#### Configuration file
+
+`logging.properties`
+
+#### Default the config file location
+
+`${JAVA_JRE}/lib/logging.properties` 
+
+#### Customizing location to an external `logging.properties` file
+
+Set `java.util.logging.config.file` system setting.
+
+#### Accessing `logging.properties` from the `resources`
+
+Load the `logging.properties` file from the resources via `LogManager`
 ```java
 public class JulLoggingExample {
 
@@ -24,7 +39,7 @@ public class JulLoggingExample {
 }
 ```
 
-Do not load file via file name from resources as:
+Note: do not load file via file name from resources as:
 ```java
 public class JulLoggingExample {
 
