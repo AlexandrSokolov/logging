@@ -5,12 +5,14 @@ import com.savdev.example.logging.jul.JulLoggingExample;
 import com.savdev.example.logging.log4j.Log4jLoggingExample;
 import com.savdev.example.logging.log4j.Log4jV2LoggingExample;
 import com.savdev.example.logging.logback.SlfLogbackLoggingExample;
+import org.apache.logging.log4j.CloseableThreadContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import java.util.UUID;
 
 @Singleton
 @Startup
@@ -29,11 +31,14 @@ public class Log4j2WebLoggingExample {
   }
 
   public void doLog() {
-    logger.info("This is an info message, (originally, log4j2 war)");      // == INFO
-    logger.error("This is an error message, (originally, log4j2 war)");   // == ERROR
-    logger.warn("This is a warning message, (originally, log4j2 war)"); // == WARNING
-    logger.debug("Here is a debug message, (originally, log4j2 war)");      // == DEBUG
-    logger.info(logger.getClass().getName());
+    try (final CloseableThreadContext.Instance ctc =
+           CloseableThreadContext.put("loginId", UUID.randomUUID().toString())) {
+      logger.info(() -> "This is an info message, via supplier, (originally, log4j2 war)");      // == INFO
+      logger.error("This is an error message, (originally, log4j2 war)");   // == ERROR
+      logger.warn("This is a warning message, (originally, log4j2 war)"); // == WARNING
+      logger.debug("Here is a debug message, (originally, log4j2 war)");      // == DEBUG
+      logger.info(logger.getClass().getName());
+    }
   }
 
 }
