@@ -34,10 +34,11 @@ public class Slf4jWebLoggingExample {
   public void doLog() {
     try {
       MDC.put("user", UUID.randomUUID().toString());
-      logger.info("This is an info message, (originally, slf4j war)");      // == INFO
-      logger.error("This is an error message, (originally, slf4j war)");   // == ERROR
-      logger.warn("This is a warning message, (originally, slf4j war)"); // == WARNING
-      logger.debug("Here is a debug message, (originally, slf4j war)");      // == DEBUG
+      String note = "(originally, slf4j war)";
+      logger.info("This is an info message, {}", note);      // == INFO
+      logger.error("This is an error message, {}", note);   // == ERROR
+      logger.warn("This is a warning message, {}", note); // == WARNING
+      logger.debug("Here is a debug message, {}", note);      // == DEBUG
       logger.info(logger.getClass().getName());
     } finally {
       MDC.clear();
