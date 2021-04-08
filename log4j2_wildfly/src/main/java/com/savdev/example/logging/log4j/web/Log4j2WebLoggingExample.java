@@ -32,11 +32,12 @@ public class Log4j2WebLoggingExample {
 
   public void doLog() {
     try (final CloseableThreadContext.Instance ctc =
-           CloseableThreadContext.put("loginId", UUID.randomUUID().toString())) {
-      logger.info(() -> "This is an info message, via supplier, (originally, log4j2 war)");      // == INFO
-      logger.error("This is an error message, (originally, log4j2 war)");   // == ERROR
-      logger.warn("This is a warning message, (originally, log4j2 war)"); // == WARNING
-      logger.debug("Here is a debug message, (originally, log4j2 war)");      // == DEBUG
+           CloseableThreadContext.put("user", UUID.randomUUID().toString())) {
+      String note = "(originally, log4j2 war)";
+      logger.info(() -> "This is an info message, via supplier, " + note);      // == INFO
+      logger.error("This is an error message, {}", note);   // == ERROR
+      logger.warn("This is a warning message, {}", note); // == WARNING
+      logger.debug("Here is a debug message, {}", note);      // == DEBUG
       logger.info(logger.getClass().getName());
     }
   }

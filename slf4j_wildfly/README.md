@@ -1,4 +1,4 @@
-## Using `slf4j` API in java code for WildFly
+### Using `slf4j` API in java code for WildFly
 
 Add dependency on:
 ```xml

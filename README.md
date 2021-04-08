@@ -12,8 +12,8 @@
 
 ### Logging frameworks management for java applications, deployed to WildFly
 
-- [Slf4j for WildFly (preferred)](slf4j_wildfly/README.md)
 - [Log4j2 for WildFly](log4j2_wildfly/README.md)
+- [Slf4j for WildFly](slf4j_wildfly/README.md)
 
 ### Logging frameworks for standalone java applications
 
