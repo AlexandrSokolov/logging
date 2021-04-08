@@ -33,7 +33,7 @@ public class Slf4jWebLoggingExample {
 
   public void doLog() {
     try {
-      MDC.put("user", UUID.randomUUID().toString());
+      MDC.put("user_session_id", UUID.randomUUID().toString());
       String note = "(originally, slf4j war)";
       logger.info("This is an info message, {}", note);      // == INFO
       logger.error("This is an error message, {}", note);   // == ERROR

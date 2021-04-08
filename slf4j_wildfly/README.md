@@ -30,16 +30,16 @@ Here is example for log4j2 to redirect it to slf4j:
 ```
 
 ### 2 For MDC, you need to configure the logging system of Wildfly with the key, used in MDC.
-For instance, you use it with `user` key:
+For instance, you use it with `user_session_id` key:
 ```java
     try {
-      MDC.put("user", UUID.randomUUID().toString());
+      MDC.put("user_session_id", UUID.randomUUID().toString());
       ...
     } finally {
       MDC.clear();
     }
 ```
-Then you need to include `%X{user}` into the `formatter`: 
+Then you need to include `%X{user_session_id}` into the `formatter`: 
 
 #### 2.1 At runtime via CLI:
 
@@ -50,9 +50,9 @@ $ docker exec -it bm_wf sh -c "/opt/jboss/wildfly/bin/jboss-cli.sh --connect --c
 /subsystem=logging/periodic-rotating-file-handler=CUSTOM_MDC_HANDLER:write-attribute(name="level", value="DEBUG")
 /subsystem=logging/periodic-rotating-file-handler=CUSTOM_MDC_HANDLER:write-attribute(name="append", value="true")
 ```
-Add a new formatter which includes `%X{user}` line for `user` key in MDC:
+Add a new formatter which includes `%X{user_session_id}` line for `user_session_id` key in MDC:
 ```
-/subsystem=logging/periodic-rotating-file-handler=CUSTOM_MDC_HANDLER:write-attribute(name="formatter", value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) [%X{user}] %s%e%n") 
+/subsystem=logging/periodic-rotating-file-handler=CUSTOM_MDC_HANDLER:write-attribute(name="formatter", value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) [%X{user_session_id}] %s%e%n") 
 ```
 Check result:
 ```
@@ -70,7 +70,7 @@ Check result:
         },
         "filter" => undefined,
         "filter-spec" => undefined,
-        "formatter" => "%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) [%X{user}] %s%e%n",
+        "formatter" => "%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) [%X{user_session_id}] %s%e%n",
         "level" => "DEBUG",
         "name" => "CUSTOM_MDC_HANDLER",
         "named-formatter" => undefined,
@@ -112,7 +112,7 @@ After the investigation you should remove the new configurations:
         </handlers>
     </logger>
     <formatter name="MDC_PATTERN">
-        <pattern-formatter pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) [%X{user}] %s%e%n"/>
+        <pattern-formatter pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) [%X{user_session_id}] %s%e%n"/>
     </formatter>
 </subsystem>
 ```

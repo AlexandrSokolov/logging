@@ -31,7 +31,7 @@ import org.apache.logging.log4j.Logger;
 
   public void doLog() {
     try (final CloseableThreadContext.Instance ctc =
-           CloseableThreadContext.put("user", UUID.randomUUID().toString())) {
+           CloseableThreadContext.put("user_session_id", UUID.randomUUID().toString())) {
       String note = "(originally, log4j2 war)";
       logger.info(() -> "This is an info message, via supplier, " + note);      // == INFO
       logger.error("This is an error message, {}", note);   // == ERROR
