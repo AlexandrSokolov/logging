@@ -83,6 +83,7 @@ Add new logger for your package. In this case `com.savdev.example` is used and l
 /subsystem=logging/logger=com.savdev.example:add
 /subsystem=logging/logger=com.savdev.example:write-attribute(name="level", value="DEBUG")
 /subsystem=logging/logger=com.savdev.example:assign-handler(name="CUSTOM_MDC_HANDLER")
+/subsystem=logging/logger=com.savdev.example:write-attribute(name=use-parent-handlers, value=false)
 /subsystem=logging/logger=com.savdev.example:read-resource
 ```
 
