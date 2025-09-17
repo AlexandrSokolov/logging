@@ -4,29 +4,59 @@
 
   <groupId>com.savdev.example.logging</groupId>
   <artifactId>logging-parent</artifactId>
-  <packaging>pom</packaging>
   <version>1.0.0</version>
+
+  <packaging>pom</packaging>
 
   <properties>
 
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!-- test frameworks -->
+    <junit5.version>5.9.3</junit5.version>
 
   </properties>
 
   <modules>
-    <module>jul</module>
-    <module>log4j</module>
-    <module>jcl_log4j</module>
-    <module>log4j2</module>
-    <module>slf4j_logback</module>
-    <module>slf4j_log4j</module>
-    <module>slf4j_log4j2</module>
-    <module>slf4j_mix</module>
-    <module>slf4j_wildfly</module>
-    <module>log4j2_mix</module>
-    <module>log4j2_wildfly</module>
+    <module>libs/log4j2</module>
+    <module>libs/slf4j</module>
+    <module>libs/jcl_v1.3</module>
+    <module>libs/jul</module>
+    <module>libs/jcl</module>
+    <module>libs/log4j_v1</module>
+
+    <module>apps/logback</module>
+    <module>apps/log4j2</module>
+
   </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>2.25.1</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>2.0.17</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.junit/junit-bom -->
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${junit5.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
 </project>
