@@ -1,25 +1,23 @@
-- Move here, how spring controls logging (default app with )
-- How in spring use log4j2 api (create spring_logging) - project with examples of both slf4j api and log4j2 api
-- How in spring switch from logback to log4j core (spring_log4j2_core)
-- When logging can be set - for tests, built-time, startup-time, runtime
-- Logging at runtime
-- Outdated logging solutions, why
-- Logging principles, update
-- How to enable logging for rest clients of http requests.
-- Logging for docker 
-- [JBoss Logging](https://docs.jboss.org/hibernate/orm/5.4/topical/html_single/logging/Logging.html)
-- wildfly logging at runtime, cli commands example
+### Logging for docker 
+
+### [JBoss Logging](https://docs.jboss.org/hibernate/orm/5.4/topical/html_single/logging/Logging.html)
+
+### wildfly logging at runtime, cli commands example
 
 ### [JUL redirect to log4j2](apps/log4j2/TODO.md)
+
+### Last9, OTLP, what is it?
+
+### Mapped Diagnostic Context (MDC) for Logging Context
+Enhancing Logs with Contextual Information
+https://last9.io/blog/a-guide-to-spring-boot-logging/
 
 - MDC
 - NDC
 - ClosingThreadContext
-- Filters. Lot of examples:
-  http://logback.qos.ch/manual/filters.html
-  https://logging.apache.org/log4j/2.x/manual/filters.html
 
-### Last9, OTLP, what is it?
+### Asynchronous Logging for Performance Optimization
+https://last9.io/blog/a-guide-to-spring-boot-logging/
 
 https://last9.io/blog/java-util-logging-configuration/
 
@@ -36,4 +34,9 @@ They appear alongside metrics and traces—correlated automatically.
 You get a single-pane view of system behavior, great for debugging and alert triage.
 No need for separate logging infrastructure like ELK, Loki, or a sidecar setup.
 
+### Example: Using AOP for Method-Level Logging
+https://last9.io/blog/a-guide-to-spring-boot-logging/
 
+### Filters. Lot of examples:
+http://logback.qos.ch/manual/filters.html
+https://logging.apache.org/log4j/2.x/manual/filters.html

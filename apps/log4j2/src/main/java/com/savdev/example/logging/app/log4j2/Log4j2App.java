@@ -6,12 +6,12 @@ import com.savdev.example.logging.jul.JulLib;
 import com.savdev.example.logging.log4j2.Log4j2Lib;
 import com.savdev.example.logging.log4j_v1.Log4V1jLib;
 import com.savdev.example.logging.slf4j.Slf4jLib;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Log4j2App {
 
-  private static final Logger logger = LoggerFactory.getLogger(Log4j2App.class);
+  private static final Logger logger = LogManager.getLogger();
 
   public void runLibs() {
     logger.debug("Slf4j lib call:");

@@ -1,4 +1,5 @@
 
+## Logging-related topics:
 - [Logging usage principles](#logging-usage-principles)
 - [Logging dependencies roles](#logging-dependencies-roles)
 - [Logging API](#logging-api)
@@ -6,9 +7,21 @@
 - [Logging implementation](#logging-implementation)
 - [Logging implementation options](#logging-implementation-options)
 - [Logging bridges](#logging-bridges)
-- [Logging bridges options](#logging-bridges-options)
-- [Logging Legacy solutions](#legacy-solutions)
+- [Logging bridges for Logback](#logging-bridges-for-logback)
+- [Logging bridges for Log4j](#logging-bridges-for-log4j)
+- [Logging in Spring with a default logging framework](apps/spring_logback/README.md#logging-in-spring)
+- [Logging in Spring with `log4j-core` logging framework](apps/spring_log4j/README.md)
 
+## Change logging levels:  
+- [Change logging level at runtime via Spring Actuator](apps/spring_logback/README.md#change-logging-level-at-runtime-via-actuator)
+- [Change logging level at runtime via `LoggingSystem`](apps/spring_logback/README.md#change-logging-level-at-runtime-via-loggingsystem)
+- [Set logging level during application startup](apps/spring_logback/README.md#set-logging-level-during-application-startup)
+- [Built-time logging configuration in Spring Apps](apps/spring_logback/README.md#built-time-logging-configuration)
+- [Log2j2, set logging level per package](libs/log4j2/src/test/resources/log4j2-test.properties)
+- [Logback, set logging level per package](libs/slf4j/src/test/resources/logback-test.xml)
+
+## Legacy solution:
+- [Logging Legacy solutions](#legacy-solutions)
 
 ### Logging dependencies roles
 
@@ -109,6 +122,8 @@ You can have multiple logging API dependencies in the same project with no issue
     While it does not require any additional steps, only dependency update.     
     **In new projects you should use Log4j2 or Slf4j logging APIs.**
 4. TODO JBoss Logging
+   - plays the same role as JCL - tries to get which logging implementation is used, 
+   allowing you to decouple it from API.
 
 ### Logging implementation
 
@@ -169,112 +184,116 @@ They ensure compatibility between different logging APIs and frameworks, allowin
 If you don’t use a logging bridge then you will see logs from your code but will not be able to see logs 
 written by the library which has incompatible logging API.
 
-### Logging bridges options
-
 Logging bridges choices depend directly on the chosen implementation.
-You need to redirect logging statements from all the possible logging APIs (or deprecated logging libraries) to 
+You need to redirect logging statements from all the possible logging APIs (or deprecated logging libraries) to
 the logging implementation you use in your project.
 
-1. [Logback](apps/logback/pom.xml) - in order to use logback as a logging implementation we define bridges that redirect calls to slf4j:
-    ```xml
-    <dependencies>
-      <!-- translate log4j2 calls to SLF4J API (Log4j-to-SLF4J bridge)-->
-      <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-to-slf4j -->
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-to-slf4j</artifactId>
-        <version>2.25.1</version>
-      </dependency>
-      <!-- translate log4j-1.x (but not log4j 2.x) records to SLF4J API-->
-      <!-- https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j -->
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>log4j-over-slf4j</artifactId>
-        <version>2.0.17</version>
-      </dependency>
-      <!-- translate jcl calls to SLF4J API (JCL-to-SLF4J bridge)-->
-      <!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jcl-over-slf4j</artifactId>
-        <version>2.0.17</version>
-      </dependency>   
-      <!-- translate JUL (Java Logging) calls to Log4j API (JUL-to-Log4j bridge)-->
-      <!-- https://mvnrepository.com/artifact/org.slf4j/jul-to-slf4j -->
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jul-to-slf4j</artifactId>
-        <version>2.0.17</version>
-      </dependency>
-    </dependencies>
-    ```
-   Note, for log4j v.1, you still need to find exclude dependencies in the project on log4j:
-    ```xml
-        <dependency>
-          <groupId>com.savdev.example.logging</groupId>
-          <artifactId>log4j-v1-lib</artifactId>
-          <version>1.0.0</version>
-          <exclusions>
-            <exclusion>
-              <groupId>log4j</groupId>
-              <artifactId>log4j</artifactId>
-            </exclusion>
-          </exclusions>
-        </dependency>
-    ```
-   And you get in the log warnings:
-    ```text
-    log4j:WARN No appenders could be found for logger (/some/package/SomeClass).
-    log4j:WARN Please initialize the log4j system properly.
-    log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
-    ```
-2. Log4j (version 2.x.x)
-    ```xml
-    <dependencyManagement>
-     <dependencies>
-       <!--Since version 1.3.0 Apache Commons Logging natively supports Log4j API.-->
-      <!--So instead of using a bridge for jcl we can just force the version.-->
-      <dependency>
-        <groupId>commons-logging</groupId>
-        <artifactId>commons-logging</artifactId>
-        <version>1.3.5</version>
-      </dependency>
-     </dependencies>
-    </dependencyManagement>
-    <dependencies>
-      <!--translate SLF4J calls to Log4j API (SLF4J-to-Log4j bridge)-->
-      <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl -->
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-slf4j2-impl</artifactId>
-        <version>2.25.1</version>
-        <scope>compile</scope>
-      </dependency>
-      <!-- translate JUL (Java Logging) calls to Log4j API (JUL-to-Log4j bridge)-->
-      <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-jul -->
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-jul</artifactId>
-        <version>2.25.1</version>
-        <scope>runtime</scope>
-      </dependency>
-    </dependencies>
-    ```
+### Logging bridges for Logback
 
-### Logging usage principles:
+In order to use logback as a logging implementation we define bridges that redirect calls to slf4j.
 
-- Do not use logging framework directly,
-  but use in your code logging bridge interfaces
-  (`slf4j`, `log4j2`).
-  Do not use JCL - as a logging bridge. It is a legacy.
-- For standalone applications add logging dependency via maven.
-- For managed applications (for instance deployed to the Wildfly), 
-  configure actual logging dependency via the server configuration.
-  Do not include maven dependencies on a real logging implementations.
-- It must be only one logging implementation in the project.
-- If you develop a library, do not add compile dependency on a logging implementation.
-  Only the library consumers should decide it.
-- In a library you can add logging implementation with a test scope only.
+[Logback](apps/logback/pom.xml):
+```xml
+<dependencies>
+  <!-- translate log4j2 calls to SLF4J API (Log4j-to-SLF4J bridge)-->
+  <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-to-slf4j -->
+  <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-to-slf4j</artifactId>
+    <version>2.25.1</version>
+  </dependency>
+  <!-- translate log4j-1.x (but not log4j 2.x) records to SLF4J API-->
+  <!-- https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j -->
+  <dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>log4j-over-slf4j</artifactId>
+    <version>2.0.17</version>
+  </dependency>
+  <!-- translate jcl calls to SLF4J API (JCL-to-SLF4J bridge)-->
+  <!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
+  <dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>jcl-over-slf4j</artifactId>
+    <version>2.0.17</version>
+  </dependency>   
+  <!-- translate JUL (Java Logging) calls to Log4j API (JUL-to-Log4j bridge)-->
+  <!-- https://mvnrepository.com/artifact/org.slf4j/jul-to-slf4j -->
+  <dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>jul-to-slf4j</artifactId>
+    <version>2.0.17</version>
+  </dependency>
+</dependencies>
+```
+Note, for log4j v.1, you still need to find exclude dependencies in the project on log4j:
+```xml
+    <dependency>
+      <groupId>com.savdev.example.logging</groupId>
+      <artifactId>log4j-v1-lib</artifactId>
+      <version>1.0.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+```
+And you get in the log warnings:
+```text
+log4j:WARN No appenders could be found for logger (/some/package/SomeClass).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+```
+   
+### Logging bridges for Log4j
+
+[Log4j (version 2.x.x)](apps/log4j2/README.md)
+```xml
+<dependencyManagement>
+ <dependencies>
+   <!--Since version 1.3.0 Apache Commons Logging natively supports Log4j API.-->
+  <!--So instead of using a bridge for jcl we can just force the version.-->
+  <dependency>
+    <groupId>commons-logging</groupId>
+    <artifactId>commons-logging</artifactId>
+    <version>1.3.5</version>
+  </dependency>
+ </dependencies>
+</dependencyManagement>
+<dependencies>
+  <!--translate SLF4J calls to Log4j API (SLF4J-to-Log4j bridge)-->
+  <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl -->
+  <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-slf4j2-impl</artifactId>
+    <version>2.25.1</version>
+    <scope>compile</scope>
+  </dependency>
+  <!-- translate JUL (Java Logging) calls to Log4j API (JUL-to-Log4j bridge)-->
+  <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-jul -->
+  <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-jul</artifactId>
+    <version>2.25.1</version>
+    <scope>runtime</scope>
+  </dependency>
+</dependencies>
+```
+
+### Logging usage principles
+
+- In the code we use only logging API, but not logging API implementation. 
+  Multiple logging APIs are usually available in projects, so you could choose one you want.
+- If you develop a library, do not add dependency on a logging implementation. Only the library consumers can decide what to use.
+  You can still add logging implementation with a test scope only.
+- Use - `slf4j` or `log4j2` as logging API. Do not use JCL. JCL version 1.2 is a legacy solution. 
+  JCL version 1.3.x is reasonable only to update existing projects without code change, that use the old version.
+- It must be only one logging implementation in the project. 
+- Do not forget about bridges, that must redirect all the logging calls to the chosen logging framework.
+- For standalone Java and Spring-based applications control the logging dependency via maven.
+- For Wildfly configure the actual logging dependency via the application configuration.
+  Do not include logging implementation into the dependencies. 
 
 
 ### Legacy solutions
@@ -288,5 +307,12 @@ the logging implementation you use in your project.
         </dependency>
     ```
 - [JUL](libs/jul/README.md)
+- JCL v1.2 - The 1.2 version was released in 2014 and had some hard-to-debug issues with class loading
+  and interactions between the API and the frameworks.
+
+  This project was not touched till 2023 with a new 1.3.0 release.
+  The only purpose to use this option is to update existing projects with old JCL versions to the new one.
+  While it does not require any additional steps, only dependency update.     
+  **In new projects you should prefer Log4j2 or Slf4j logging APIs.**
 
 

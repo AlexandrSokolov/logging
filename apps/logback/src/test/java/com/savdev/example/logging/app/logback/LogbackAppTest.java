@@ -11,15 +11,19 @@ public class LogbackAppTest {
 
   @BeforeAll
   public static void setup() {
-    SLF4JBridgeHandler.removeHandlersForRootLogger();
-    SLF4JBridgeHandler.install();
-    //you cannot set log level only for specific package:
-    //Logger.getLogger("com.savdev").setLevel(Level.FINER);
-    Logger.getLogger("").setLevel(Level.FINER);
+    enableJulLogging();
   }
 
   @Test
   public void testLogbackApp() {
     new LogbackApp().runLibs();
+  }
+
+  public static void enableJulLogging() {
+    SLF4JBridgeHandler.removeHandlersForRootLogger();
+    SLF4JBridgeHandler.install();
+    //you cannot set log level only for specific package:
+    //Logger.getLogger("com.savdev").setLevel(Level.FINER);
+    Logger.getLogger("").setLevel(Level.FINER);
   }
 }

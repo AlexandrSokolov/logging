@@ -1,0 +1,9 @@
+logging:
+  level:
+    com:
+      example:
+        sb:
+          logback: debug
+      savdev:
+        example:
+          logging: debug

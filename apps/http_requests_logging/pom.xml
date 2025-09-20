@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.savdev.example.logging</groupId>
+    <artifactId>logging-parent</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>http-client-app</artifactId>
+  <packaging>jar</packaging>
+
+  <properties>
+    <log4j2.version>2.25.1</log4j2.version>
+    <jakarta.ws.rs-api.vesion>4.0.0</jakarta.ws.rs-api.vesion>
+    <resteasy.bom.version>6.2.4.Final</resteasy.bom.version>
+    <wiremock.version>3.13.1</wiremock.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!--Since version 1.3.0 Apache Commons Logging natively supports Log4j API.-->
+      <!--So instead of using a bridge for jcl we can just force the version.-->
+      <!--      Also a fix for `SLF4J(W): No SLF4J providers were found.` warning -->
+      <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>1.3.5</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-bom -->
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-bom</artifactId>
+        <version>${resteasy.bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api -->
+    <dependency>
+      <groupId>jakarta.ws.rs</groupId>
+      <artifactId>jakarta.ws.rs-api</artifactId>
+      <version>${jakarta.ws.rs-api.vesion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-client</artifactId>
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <artifactId>commons-logging</artifactId>-->
+<!--          <groupId>commons-logging</groupId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
+    </dependency>
+
+    <!--    Log4j logging bridges:-->
+    <!--translate SLF4J calls to Log4j API (SLF4J-to-Log4j bridge)-->
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j2-impl</artifactId>
+      <version>2.25.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <!-- translate JUL (Java Logging) calls to Log4j API (JUL-to-Log4j bridge)-->
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-jul -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-jul</artifactId>
+      <version>2.25.1</version>
+      <scope>runtime</scope>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.25.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.wiremock</groupId>
+      <artifactId>wiremock</artifactId>
+      <version>${wiremock.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>

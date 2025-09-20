@@ -30,6 +30,9 @@
 
     <module>apps/logback</module>
     <module>apps/log4j2</module>
+    <module>apps/spring_logback</module>
+    <module>apps/spring_log4j</module>
+    <module>apps/http_requests_logging</module>
 
   </modules>
 

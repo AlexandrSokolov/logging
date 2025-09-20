@@ -81,6 +81,7 @@
       <artifactId>log4j-jul</artifactId>
       <version>${log4j2.version}</version>
     </dependency>
+    <!-- to fix java.lang.NoClassDefFoundError: org/apache/log4j/LogManager-->
     <!-- translate Log4j 1.x calls to Log4j API (Log4j-to-Log4j2 bridge)-->
     <!-- you must remove all dependencies on log4j-->
     <dependency>

@@ -5,7 +5,9 @@
     </encoder>
   </appender>
 
-  <root level="debug">
+  <logger name="com.savdev.example.logging" level="DEBUG"/>
+
+  <root level="INFO">
     <appender-ref ref="STDOUT" />
   </root>
 </configuration>
