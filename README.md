@@ -11,6 +11,7 @@
 - [Logging bridges for Log4j](#logging-bridges-for-log4j)
 - [Logging in Spring with a default logging framework](apps/spring_logback/README.md#logging-in-spring)
 - [Logging in Spring with `log4j-core` logging framework](apps/spring_log4j/README.md)
+- [Http requests logging](apps/http_requests_logging/README.md)
 
 ## Change logging levels:  
 - [Change logging level at runtime via Spring Actuator](apps/spring_logback/README.md#change-logging-level-at-runtime-via-actuator)
