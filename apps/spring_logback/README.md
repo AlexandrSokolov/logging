@@ -187,10 +187,26 @@ We can use a `spring.application.json` property, for more complicated configurat
    ```bash
    export LOGGING_LEVEL_COM_EXAMPLE_SB_LOG4J2=DEBUG && mvn spring-boot:run
    ```
-   or:
+   for docker compose:
+   ```yaml
+       environment:
+         - LOGGING_LEVEL_COM_EXAMPLE_SB_LOG4J2=DEBUG
+   ```
+
+   or (todo could not get it work for docker compose):
    ```bash
    export SPRING_APPLICATION_JSON='{"logging.level.com.example.sb.log4j2":"debug"}' && mvn spring-boot:run
    ```
+    does not work in docker composition:
+    ```yaml
+       environment:
+        - SPRING_APPLICATION_JSON:'{"logging.level.com.example.sb":"debug"}'
+    ```
+    could not be parsed with `=` as a separator:
+    ```yaml
+       environment:
+        - SPRING_APPLICATION_JSON='{"logging.level.com.example.sb":"debug"}'
+    ```
 
 2. Via system properties
 
